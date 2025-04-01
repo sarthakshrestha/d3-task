@@ -283,17 +283,38 @@ export const addBarLabels = (
 
   // Add country labels with white text if enabled
   if (showCountryLabels) {
-    g.selectAll(".country-label")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("class", "country-label")
-      .attr("x", (d) => (x(d.Name) || 0) + x.bandwidth() / 2)
-      .attr("y", height + 60)
-      .attr("text-anchor", "middle")
-      .style("font-size", "10px")
-      .style("fill", "#9ca3af") // Medium gray for better visibility
-      .text((d) => d.country);
+    // Check if screen width is above mobile breakpoint (e.g., 640px)
+    const isMobileView = window.innerWidth < 640;
+
+    if (!isMobileView) {
+      g.selectAll(".country-label")
+        .data(data)
+        .enter()
+        .append("text")
+        .attr("class", "country-label")
+        .attr("x", (d) => (x(d.Name) || 0) + x.bandwidth() / 2)
+        .attr("y", height + 60)
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style("fill", "#9ca3af") // Medium gray for better visibility
+        .text((d) => d.country);
+    }
+
+    // Add responsive event listener to handle resize
+    const handleResize = debounce(() => {
+      const isMobile = window.innerWidth < 640;
+
+      // Show/hide country labels based on screen size
+      g.selectAll(".country-label").style(
+        "display",
+        isMobile ? "none" : "block"
+      );
+    }, 250);
+
+    // Add event listener (will be cleaned up by React useEffect)
+    window.addEventListener("resize", handleResize);
+
+    // We're using the debounce utility already defined in your file
   }
 };
 

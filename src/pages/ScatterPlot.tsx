@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import * as d3 from "d3";
 import {
   Card,
@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+const csvDataUrl = import.meta.env.BASE_URL + "data/data.csv";
 
 import {
   CompanyData,
@@ -55,7 +56,7 @@ const ScatterPlot = () => {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const formattedData = await fetchCompanyData("/src/data/data.csv");
+        const formattedData = await fetchCompanyData(csvDataUrl);
         setData(formattedData);
 
         const uniqueCountries = [

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import * as d3 from "d3";
 import {
   Card,
@@ -18,13 +18,11 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, RefreshCw } from "lucide-react";
+const csvDataUrl = import.meta.env.BASE_URL + "data/data.csv";
 
 import {
   CompanyData,
-  colorSchemes,
   createTooltip,
-  showTooltip,
-  hideTooltip,
   renderBarChart,
   addBarsToChart,
   addBarLabels,
@@ -44,17 +42,17 @@ const FirstChart = () => {
   const [countries, setCountries] = useState<string[]>(["All"]);
 
   // Pagination state
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   // Color theme
-  const [colorTheme, setColorTheme] = useState<string>("red");
+  const [colorTheme, setColorTheme] = useState<string>("blue");
 
   // Load CSV data dynamically using our helper function
   useEffect(() => {
     const loadData = async () => {
       try {
-        const formattedData = await fetchCompanyData("/src/data/data.csv");
+        const formattedData = await fetchCompanyData(csvDataUrl);
         setData(formattedData);
 
         const uniqueCountries = [
