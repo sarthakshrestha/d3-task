@@ -1,7 +1,7 @@
 import "./App.css";
 import Menu from "./reusable/menu";
 import FirstChart from "./pages/BarChart";
-
+import ScatterPlot from "./pages/ScatterPlot";
 function App() {
   return (
     <div className="bg-zinc-900 overflow-x-hidden">
@@ -15,6 +15,9 @@ function App() {
 
       <div className="mt-8 ">
         <FirstChart />{" "}
+      </div>
+      <div className="mt-8 ">
+        <ScatterPlot />{" "}
       </div>
     </div>
   );
