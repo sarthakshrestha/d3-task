@@ -11,16 +11,34 @@ export type CompanyData = {
 };
 
 // Color Schemes
+// Color Schemes - adjusted for lighter colors
 export const colorSchemes = {
-  blue: (t: number) => d3.interpolateBlues(1 - t),
-  green: (t: number) => d3.interpolateGreens(1 - t),
-  purple: (t: number) => d3.interpolatePurples(1 - t),
-  orange: (t: number) => d3.interpolateOranges(1 - t),
-  red: (t: number) => d3.interpolateReds(1 - t),
+  blue: (t: number) => d3.interpolateBlues(0.2 + 0.5 * (1 - t)),
+  green: (t: number) => d3.interpolateGreens(0.2 + 0.5 * (1 - t)),
+  purple: (t: number) => d3.interpolatePurples(0.2 + 0.5 * (1 - t)),
+  orange: (t: number) => d3.interpolateOranges(0.2 + 0.5 * (1 - t)),
+  red: (t: number) => d3.interpolateReds(0.2 + 0.5 * (1 - t)),
 };
-
 // Formatting utilities
-export const formatNumber = d3.format(",.2s");
+export const formatNumber = (value: number): string => {
+  const roundAndFormat = (num: number): string => {
+    const rounded = Math.round(num * 10) / 10;
+    return rounded % 1 === 0 ? rounded.toString() : rounded.toString();
+  };
+
+  if (value >= 1e12) {
+    return `${roundAndFormat(value / 1e12)}T`;
+  } else if (value >= 1e9) {
+    return `${roundAndFormat(value / 1e9)}B`;
+  } else if (value >= 1e6) {
+    return `${roundAndFormat(value / 1e6)}M`;
+  } else if (value >= 1e3) {
+    return `${roundAndFormat(value / 1e3)}K`;
+  } else {
+    // For small numbers, round to integer
+    return Math.round(value).toString();
+  }
+};
 export const formatCurrency = (value: number) => `$${formatNumber(value)}`;
 
 // Tooltip utilities
@@ -313,8 +331,6 @@ export const addBarLabels = (
 
     // Add event listener (will be cleaned up by React useEffect)
     window.addEventListener("resize", handleResize);
-
-    // We're using the debounce utility already defined in your file
   }
 };
 

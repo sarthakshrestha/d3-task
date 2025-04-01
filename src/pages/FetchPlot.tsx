@@ -382,7 +382,7 @@ const FetchPlot = () => {
           </div>
         </CardContent>
 
-        <CardFooter className="text-xs text-zinc-500 border-t border-zinc-800 pt-4 flex justify-between">
+        <CardFooter className="text-xs text-zinc-500 pt-4 flex justify-between">
           <span>Data source: World Bank Open Data</span>
           <div className="flex items-center">
             <Info className="w-3 h-3 mr-1" />

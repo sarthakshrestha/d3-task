@@ -8,7 +8,7 @@ import Logo from "/logo/Assabet.webp";
 
 function App() {
   return (
-    <div className="bg-zinc-900 overflow-x-hidden rounded-3xl md:max-w-7xl mx-auto items-center">
+    <div className="bg-zinc-900 overflow-x-hidden rounded-3xl mx-auto items-center">
       <header className="flex items-center justify-end p-2 bg-transaprent">
         <Menu />
       </header>
@@ -29,7 +29,7 @@ function App() {
         />
       </div>
 
-      <div className="mt-8">
+      <div>
         <FirstChart /> <ScatterPlot /> <FetchPlot />{" "}
       </div>
     </div>

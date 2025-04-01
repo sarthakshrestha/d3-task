@@ -176,7 +176,7 @@ const FirstChart = () => {
 
   if (isLoading) {
     return (
-      <Card className=" bg-zinc-900 border-zinc-800">
+      <Card className=" bg-zinc-900 ">
         <CardContent className="pt-6">
           <div className="flex items-center justify-center h-64">
             <RefreshCw className="w-6 h-6 mr-2 animate-spin text-zinc-200" />
@@ -313,7 +313,7 @@ const FirstChart = () => {
             </div>
           )}
         </CardContent>
-        <CardFooter className="text-xs text-zinc-500 border-t border-zinc-800 pt-4">
+        <CardFooter className="text-xs text-zinc-500  pt-4">
           Data source: Gaming companies market capitalization
         </CardFooter>
       </Card>
