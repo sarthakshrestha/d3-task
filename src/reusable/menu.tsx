@@ -20,9 +20,9 @@ const Menu = () => {
             className="flex flex-col items-center justify-center w-8 h-8 space-y-1.5 bg-transparent border-none cursor-pointer"
             onClick={() => setIsOpen(true)}
           >
-            <span className="block w-6 h-0.5 bg-gray-800"></span>
-            <span className="block w-6 h-0.5 bg-gray-800"></span>
-            <span className="block w-6 h-0.5 bg-gray-800"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
+            <span className="block w-6 h-0.5 bg-white"></span>
           </button>
         </DrawerTrigger>
 

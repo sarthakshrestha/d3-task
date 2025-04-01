@@ -191,7 +191,7 @@ const FirstChart = () => {
 
   return (
     <div className="space-y-4">
-      <Card className="shadow-md bg-zinc-900 border-zinc-800">
+      <Card className="shadow-none bg-zinc-900 border-none">
         <CardHeader className="pb-2 border-b border-zinc-800">
           <CardTitle className="text-xl text-zinc-100">
             Largest Video Game Companies by Market Cap
@@ -295,7 +295,7 @@ const FirstChart = () => {
                   size="sm"
                   onClick={prevPage}
                   disabled={currentPage === 0}
-                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:text-zinc-100"
+                  className="border-zinc-700 text-zinc-800 hover:bg-zinc-800 hover:text-zinc-100"
                 >
                   <ChevronLeft className="w-4 h-4 mr-1" /> Previous
                 </Button>
@@ -307,7 +307,7 @@ const FirstChart = () => {
                   size="sm"
                   onClick={nextPage}
                   disabled={currentPage >= totalPages - 1}
-                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:text-zinc-100"
+                  className="border-zinc-700  hover:bg-zinc-800 hover:text-zinc-100 text-zinc-800"
                 >
                   Next <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
