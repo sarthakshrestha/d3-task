@@ -25,14 +25,15 @@
 
 ## Approach
 
-1. Utilize shadcn libraries for quickly building a design-centric website
-2. Use responsive queries for the Cards and Elements
+1. Utilize shadcn libraries for quickly building a design-centric website for data-visualization.
+2. Leveraging tailwindcss classes for responsiveness and consistent styling across devices.
 3. Download a dataset from an open source website- Found a dataset that I personally found interesting on companiesmarketcap.
 4. Utilize the CSV to first create the bar graph and then the scatterplot.
 5. Refractored the code as for the utils to D3.js as for the declarative syntax requires long lines of code.
 6. Post-code-refractoring start working on the fetch API.
 7. Implementing Axios along with an axiosInstance for better functionality to fetch.
 8. Added sonner to represent Errors/Successes during load times.
+9. Integrated World Bank API for fetching data.
 
 ## Challenges Faced
 
