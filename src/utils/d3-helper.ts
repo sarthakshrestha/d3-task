@@ -12,11 +12,11 @@ export type CompanyData = {
 
 // Color Schemes
 export const colorSchemes = {
-  blue: d3.interpolateBlues,
-  green: d3.interpolateGreens,
-  purple: d3.interpolatePurples,
-  orange: d3.interpolateOranges,
-  red: d3.interpolateReds,
+  blue: (t: number) => d3.interpolateBlues(1 - t),
+  green: (t: number) => d3.interpolateGreens(1 - t),
+  purple: (t: number) => d3.interpolatePurples(1 - t),
+  orange: (t: number) => d3.interpolateOranges(1 - t),
+  red: (t: number) => d3.interpolateReds(1 - t),
 };
 
 // Formatting utilities

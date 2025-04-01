@@ -176,7 +176,7 @@ const FirstChart = () => {
 
   if (isLoading) {
     return (
-      <Card className="shadow-lg bg-zinc-900 border-zinc-800">
+      <Card className=" bg-zinc-900 border-zinc-800">
         <CardContent className="pt-6">
           <div className="flex items-center justify-center h-64">
             <RefreshCw className="w-6 h-6 mr-2 animate-spin text-zinc-200" />
@@ -190,7 +190,7 @@ const FirstChart = () => {
   return (
     <div className="space-y-4">
       <Card className="shadow-none bg-zinc-900 border-none">
-        <CardHeader className="pb-2 border-b border-zinc-800">
+        <CardHeader className="pb-2  border-zinc-800">
           <CardTitle className="text-xl text-zinc-100">
             Largest Video Game Companies by Market Cap
           </CardTitle>

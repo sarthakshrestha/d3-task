@@ -195,7 +195,7 @@ const ScatterPlot = () => {
 
   if (isLoading) {
     return (
-      <Card className="shadow-lg bg-zinc-900 border-zinc-800">
+      <Card className=" bg-zinc-900 border-zinc-800">
         <CardContent className="pt-6">
           <div className="flex items-center justify-center h-64">
             <RefreshCw className="w-6 h-6 mr-2 animate-spin text-zinc-200" />
@@ -208,7 +208,7 @@ const ScatterPlot = () => {
 
   return (
     <div className="space-y-4">
-      <Card className="shadow-none bg-zinc-900 border-zinc-800">
+      <Card className="shadow-none bg-zinc-900 border-none">
         <CardHeader className="pb-2">
           <CardTitle className="text-xl text-zinc-100">
             Video Game Companies Scatter Plot
@@ -337,7 +337,7 @@ const ScatterPlot = () => {
                   size="sm"
                   onClick={nextPage}
                   disabled={currentPage >= totalPages - 1}
-                  className="bg-zinc-800 border-zinc-700 text-zinc-300 hover:bg-zinc-700"
+                  className="border-zinc-700  hover:bg-zinc-800 hover:text-zinc-100 text-zinc-800"
                 >
                   Next <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
