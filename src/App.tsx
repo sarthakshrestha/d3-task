@@ -1,11 +1,11 @@
 import "./App.css";
 import Menu from "./reusable/menu";
-import FirstChart from "./pages/PrimaryBox";
+import FirstChart from "./pages/BarChart";
 
 function App() {
   return (
     <div className="bg-zinc-900 overflow-x-hidden">
-      <header className="flex items-center justify-between p-4 bg-transaprent">
+      <header className="flex items-center justify-end p-4 bg-transaprent">
         <Menu />
       </header>
       <h1 className=" text-white font-light text-center">D3 Dashboard</h1>

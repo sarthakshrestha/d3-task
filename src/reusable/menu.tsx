@@ -28,8 +28,8 @@ const Menu = () => {
 
         {/* Drawer Content */}
         <DrawerContent
-          className="bg-white w-3/4 sm:w-1/2"
-          data-vaul-drawer-direction="left" // Opens the drawer from the left
+          className="bg-white w-1/3 sm:w-1/2"
+          data-vaul-drawer-direction="left"
         >
           <DrawerClose asChild>
             <button
