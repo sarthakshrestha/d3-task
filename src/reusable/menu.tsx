@@ -5,6 +5,7 @@ import {
   DrawerContent,
   DrawerClose,
 } from "@/components/ui/drawer";
+import { Home, Activity, Settings } from "lucide-react"; // Import icons from lucide-react
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,15 +39,29 @@ const Menu = () => {
               ✕
             </button>
           </DrawerClose>
-          <nav className="flex flex-col items-start p-4 space-y-4">
-            <a href="#home" className="text-gray-800 hover:text-blue-500">
-              Dashboard
+          <nav className="flex flex-col items-start p-4 max-sm:p-6 lg:p-8 space-y-4">
+            <a
+              href="#home"
+              className="flex items-center space-x-2 text-gray-800 hover:text-zinc-500 text-base sm:text-lg lg:text-xl"
+            >
+              <Home className="w-5 h-5 lg:w-6 lg:h-6" /> {/* Home Icon */}
+              <span>Dashboard</span>
             </a>
-            <a href="#about" className="text-gray-800 hover:text-blue-500">
-              Live API
+            <a
+              href="#about"
+              className="flex items-center space-x-2 text-gray-800 hover:text-zinc-500 text-base sm:text-lg lg:text-xl"
+            >
+              <Activity className="w-5 h-5 lg:w-6 lg:h-6" />{" "}
+              {/* Activity Icon */}
+              <span>Live API</span>
             </a>
-            <a href="#services" className="text-gray-800 hover:text-blue-500">
-              Settings
+            <a
+              href="#services"
+              className="flex items-center space-x-2 text-gray-800 hover:text-zinc-500 text-base sm:text-lg lg:text-xl"
+            >
+              <Settings className="w-5 h-5 lg:w-6 lg:h-6" />{" "}
+              {/* Settings Icon */}
+              <span>Settings</span>
             </a>
           </nav>
         </DrawerContent>

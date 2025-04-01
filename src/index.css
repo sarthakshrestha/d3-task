@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -36,6 +37,7 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+  --font-family: "Instrument Sans", sans-serif;
 }
 
 .dark {
@@ -70,6 +72,7 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.552 0.016 285.938);
+  --font-family: "League Spartan", sans-serif;
 }
 
 @theme inline {
@@ -116,5 +119,6 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-family);
   }
 }
