@@ -31,10 +31,11 @@ export const createTooltip = () => {
     .attr("class", "tooltip")
     .style("position", "absolute")
     .style("visibility", "hidden")
-    .style("background-color", "rgba(0, 0, 0, 0.8)")
+    .style("background-color", "rgba(38, 38, 38, 0.95)")
     .style("color", "white")
     .style("padding", "8px")
     .style("border-radius", "4px")
+    .style("border", "1px solid #525252")
     .style("pointer-events", "none")
     .style("font-size", "12px")
     .style("z-index", "10")
@@ -51,7 +52,9 @@ export const showTooltip = (
     .html(
       `
       <div>
-        <strong>${data.Name} (${data.Symbol})</strong><br/>
+        <strong style="color: #93c5fd">${data.Name} (${
+        data.Symbol
+      })</strong><br/>
         <span>Rank: ${data.Rank}</span><br/>
         <span>Country: ${data.country}</span><br/>
         <span>Market Cap: ${formatCurrency(data.marketcap)}</span><br/>
@@ -110,15 +113,15 @@ export const renderBarChart = (
     .domain([0, maxValue * 1.1]) // Add 10% padding at top
     .range([height, 0]);
 
-  // Create color scale
+  // Create color scale - reverse domain for darkest colors on highest values
   const colorScale = d3
     .scaleSequential()
-    .domain([0, data.length - 1])
+    .domain([maxValue, 0]) // Reversed domain to make highest values darkest
     .interpolator(
       colorSchemes[options.colorTheme as keyof typeof colorSchemes]
     );
 
-  // Add grid lines
+  // Add grid lines with light color for dark background
   g.append("g")
     .attr("class", "grid-lines")
     .selectAll("line")
@@ -129,10 +132,10 @@ export const renderBarChart = (
     .attr("x2", width)
     .attr("y1", (d) => y(d))
     .attr("y2", (d) => y(d))
-    .attr("stroke", "rgba(0, 0, 0, 0.1)")
+    .attr("stroke", "rgba(255, 255, 255, 0.1)")
     .attr("stroke-dasharray", "3,3");
 
-  // Add X axis
+  // Add X axis with white text
   g.append("g")
     .attr("class", "x-axis")
     .attr("transform", `translate(0,${height})`)
@@ -141,9 +144,13 @@ export const renderBarChart = (
     .attr("transform", "translate(-10,0)rotate(-45)")
     .style("text-anchor", "end")
     .style("font-size", "12px")
-    .style("font-weight", "500");
+    .style("font-weight", "500")
+    .style("fill", "#e5e7eb"); // Light gray text
 
-  // Add Y axis
+  // Style X-axis lines for dark mode
+  g.selectAll(".x-axis line, .x-axis path").style("stroke", "#6b7280");
+
+  // Add Y axis with white text
   g.append("g")
     .attr("class", "y-axis")
     .call(
@@ -153,9 +160,13 @@ export const renderBarChart = (
         .ticks(5)
     )
     .selectAll("text")
-    .style("font-size", "12px");
+    .style("font-size", "12px")
+    .style("fill", "#e5e7eb"); // Light gray text
 
-  // Add Y axis label
+  // Style Y-axis lines for dark mode
+  g.selectAll(".y-axis line, .y-axis path").style("stroke", "#6b7280");
+
+  // Add Y axis label with white text
   g.append("text")
     .attr("transform", "rotate(-90)")
     .attr("y", -60)
@@ -163,6 +174,7 @@ export const renderBarChart = (
     .attr("text-anchor", "middle")
     .style("font-size", "14px")
     .style("font-weight", "bold")
+    .style("fill", "#f3f4f6") // Almost white text
     .text(
       options.sortBy === "marketcap" ? "Market Cap (USD)" : "Stock Price (USD)"
     );
@@ -175,6 +187,7 @@ export const renderBarChart = (
     height,
     colorScale,
     width,
+    sortBy: options.sortBy,
   };
 };
 
@@ -186,8 +199,8 @@ export const addBarsToChart = (
     tooltip: d3.Selection<HTMLDivElement, unknown, null, undefined>;
   }
 ) => {
-  const { g, x, y, height, colorScale } = chartElements;
-  const { sortBy, tooltip } = options;
+  const { g, x, y, height, colorScale, sortBy } = chartElements;
+  const { tooltip } = options;
 
   // Add bars with animations and interaction
   g.selectAll(".bar")
@@ -199,7 +212,9 @@ export const addBarsToChart = (
     .attr("width", x.bandwidth())
     .attr("y", height)
     .attr("height", 0)
-    .attr("fill", (_, i) => colorScale(i))
+    .attr("fill", (d) =>
+      colorScale(sortBy === "marketcap" ? d.marketcap : d.price)
+    )
     .attr("rx", 4)
     .attr("ry", 4)
     .on("mouseover", function (event, d) {
@@ -207,7 +222,7 @@ export const addBarsToChart = (
         .transition()
         .duration(200)
         .attr("opacity", 0.8)
-        .attr("stroke", "#000")
+        .attr("stroke", "#e5e7eb") // Light gray stroke on hover
         .attr("stroke-width", 1);
       showTooltip(tooltip, event, d);
     })
@@ -237,12 +252,14 @@ export const addBarLabels = (
   data: CompanyData[],
   options: {
     sortBy: string;
+    showCountryLabels?: boolean;
   }
 ) => {
-  const { g, x, y } = chartElements;
+  const { g, x, y, height } = chartElements;
   const { sortBy } = options;
+  const showCountryLabels = options.showCountryLabels !== false; // Default to true
 
-  // Add value labels on top of bars
+  // Add value labels on top of bars with white text
   g.selectAll(".value-label")
     .data(data)
     .enter()
@@ -252,7 +269,7 @@ export const addBarLabels = (
     .attr("y", (d) => y(sortBy === "marketcap" ? d.marketcap : d.price) - 5)
     .attr("text-anchor", "middle")
     .style("font-size", "10px")
-    .style("fill", "#555")
+    .style("fill", "#d1d5db") // Light gray for better visibility
     .style("opacity", 0)
     .text((d) =>
       sortBy === "marketcap"
@@ -264,18 +281,20 @@ export const addBarLabels = (
     .delay((_, i) => i * 50 + 400)
     .style("opacity", 1);
 
-  // Add country labels
-  g.selectAll(".country-label")
-    .data(data)
-    .enter()
-    .append("text")
-    .attr("class", "country-label")
-    .attr("x", (d) => (x(d.Name) || 0) + x.bandwidth() / 2)
-    .attr("y", chartElements.height + 60)
-    .attr("text-anchor", "middle")
-    .style("font-size", "10px")
-    .style("fill", "#777")
-    .text((d) => d.country);
+  // Add country labels with white text if enabled
+  if (showCountryLabels) {
+    g.selectAll(".country-label")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("class", "country-label")
+      .attr("x", (d) => (x(d.Name) || 0) + x.bandwidth() / 2)
+      .attr("y", height + 60)
+      .attr("text-anchor", "middle")
+      .style("font-size", "10px")
+      .style("fill", "#9ca3af") // Medium gray for better visibility
+      .text((d) => d.country);
+  }
 };
 
 // Data processing utilities

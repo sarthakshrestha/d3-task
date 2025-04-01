@@ -48,7 +48,7 @@ const FirstChart = () => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   // Color theme
-  const [colorTheme, setColorTheme] = useState<string>("blue");
+  const [colorTheme, setColorTheme] = useState<string>("red");
 
   // Load CSV data dynamically using our helper function
   useEffect(() => {
@@ -126,7 +126,9 @@ const FirstChart = () => {
       });
 
       // Add labels
-      addBarLabels(chartElements, paginatedData, { sortBy });
+      addBarLabels(chartElements, paginatedData, {
+        sortBy,
+      });
     };
 
     const renderChartDebounced = debounce(renderChartWithData, 250);
@@ -176,11 +178,11 @@ const FirstChart = () => {
 
   if (isLoading) {
     return (
-      <Card className="shadow-lg">
+      <Card className="shadow-lg bg-zinc-900 border-zinc-800">
         <CardContent className="pt-6">
           <div className="flex items-center justify-center h-64">
-            <RefreshCw className="w-6 h-6 mr-2 animate-spin" />
-            <p>Loading data...</p>
+            <RefreshCw className="w-6 h-6 mr-2 animate-spin text-zinc-200" />
+            <p className="text-zinc-200">Loading data...</p>
           </div>
         </CardContent>
       </Card>
@@ -189,30 +191,30 @@ const FirstChart = () => {
 
   return (
     <div className="space-y-4">
-      <Card className="shadow-sm">
-        <CardHeader className="pb-2">
-          <CardTitle className="text-xl text-zinc-800">
+      <Card className="shadow-md bg-zinc-900 border-zinc-800">
+        <CardHeader className="pb-2 border-b border-zinc-800">
+          <CardTitle className="text-xl text-zinc-100">
             Largest Video Game Companies by Market Cap
           </CardTitle>
-          <CardDescription className="text-gray-600">
+          <CardDescription className="text-zinc-400">
             Interactive visualization of top gaming companies sorted by market
             capitalization
           </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <div className="flex flex-wrap gap-4 mb-6 justify-center items-center">
             <div className="w-full sm:w-48 text-center mx-auto">
-              <label className="text-sm font-medium block mb-2">
+              <label className="text-sm font-medium block mb-2 text-zinc-300">
                 Filter by Country
               </label>
               <Select
                 value={selectedCountry}
                 onValueChange={handleCountryChange}
               >
-                <SelectTrigger className="h-9 mx-auto">
+                <SelectTrigger className="h-9 mx-auto bg-zinc-800 border-zinc-700 text-zinc-200">
                   <SelectValue placeholder="Select country" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-zinc-200">
                   {countries.map((country) => (
                     <SelectItem key={country} value={country}>
                       {country}
@@ -223,12 +225,14 @@ const FirstChart = () => {
             </div>
 
             <div className="w-full sm:w-48 text-center mx-auto">
-              <label className="text-sm font-medium block mb-2">Sort By</label>
+              <label className="text-sm font-medium block mb-2 text-zinc-300">
+                Sort By
+              </label>
               <Select value={sortBy} onValueChange={handleSortChange}>
-                <SelectTrigger className="h-9 mx-auto">
+                <SelectTrigger className="h-9 mx-auto bg-zinc-800 border-zinc-700 text-zinc-200">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-zinc-200">
                   <SelectItem value="rank">Rank</SelectItem>
                   <SelectItem value="marketcap">Market Cap</SelectItem>
                   <SelectItem value="price">Stock Price</SelectItem>
@@ -237,14 +241,14 @@ const FirstChart = () => {
             </div>
 
             <div className="w-full sm:w-48 text-center mx-auto">
-              <label className="text-sm font-medium block mb-2">
+              <label className="text-sm font-medium block mb-2 text-zinc-300">
                 Color Theme
               </label>
               <Select value={colorTheme} onValueChange={handleColorThemeChange}>
-                <SelectTrigger className="h-9 mx-auto">
+                <SelectTrigger className="h-9 mx-auto bg-zinc-800 border-zinc-700 text-zinc-200">
                   <SelectValue placeholder="Select theme" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="bg-zinc-800 border-zinc-700 text-zinc-200">
                   <SelectItem value="blue">Blue</SelectItem>
                   <SelectItem value="green">Green</SelectItem>
                   <SelectItem value="purple">Purple</SelectItem>
@@ -255,7 +259,7 @@ const FirstChart = () => {
             </div>
 
             <div className="w-full sm:w-64 text-center mx-auto">
-              <label className="text-sm font-medium block mb-2">
+              <label className="text-sm font-medium block mb-2 text-zinc-300">
                 Companies per page: {itemsPerPage}
               </label>
               <div className="px-2">
@@ -271,13 +275,13 @@ const FirstChart = () => {
             </div>
           </div>
 
-          <div className="w-full overflow-x-auto bg-gray-50 rounded-md p-4">
+          <div className="w-full overflow-x-auto bg-zinc-800 rounded-md p-4">
             <svg ref={svgRef} className="w-full h-auto"></svg>
           </div>
 
           {filteredData.length > itemsPerPage && (
-            <div className="flex-col items-center justify-between mt-4">
-              <div className="text-sm text-gray-500">
+            <div className="flex-col items-center justify-between mt-6">
+              <div className="text-sm text-zinc-400">
                 Showing {currentPage * itemsPerPage + 1} to{" "}
                 {Math.min(
                   (currentPage + 1) * itemsPerPage,
@@ -291,10 +295,11 @@ const FirstChart = () => {
                   size="sm"
                   onClick={prevPage}
                   disabled={currentPage === 0}
+                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:text-zinc-100"
                 >
                   <ChevronLeft className="w-4 h-4 mr-1" /> Previous
                 </Button>
-                <span className="text-sm">
+                <span className="text-sm text-zinc-300">
                   Page {currentPage + 1} of {totalPages}
                 </span>
                 <Button
@@ -302,6 +307,7 @@ const FirstChart = () => {
                   size="sm"
                   onClick={nextPage}
                   disabled={currentPage >= totalPages - 1}
+                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 hover:text-zinc-100"
                 >
                   Next <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
@@ -309,7 +315,7 @@ const FirstChart = () => {
             </div>
           )}
         </CardContent>
-        <CardFooter className="text-xs text-gray-500 border-t pt-4">
+        <CardFooter className="text-xs text-zinc-500 border-t border-zinc-800 pt-4">
           Data source: Gaming companies market capitalization
         </CardFooter>
       </Card>
