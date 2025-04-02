@@ -50,7 +50,7 @@ const LineChart = () => {
   const [metric, setMetric] = useState<"totalMarketCap" | "avgPrice">(
     "totalMarketCap"
   );
-  const [topCountries, setTopCountries] = useState<number>(10);
+  const [topCountries, setTopCountries] = useState<number>(5);
 
   // Load CSV data
   useEffect(() => {
