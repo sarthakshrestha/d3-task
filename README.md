@@ -43,7 +43,7 @@
 
 - **Chart Component Architecture**: Developing reusable chart components with properly aligned axes and labels required a lot of coordination
 
-- **Future Improvements **: For future/further improvements when fetching the API from World Bank API, the labels of the axes can be dynamically changed according to the category fetched through an axios call.
+- **Future Improvements**: For future/further improvements when fetching the API from World Bank API, the labels of the axes can be dynamically changed according to the category fetched through an axios call.
 
 ## Data Source
 
