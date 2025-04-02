@@ -31,7 +31,8 @@ function App() {
       </div>
 
       <div>
-        <FirstChart /> <ScatterPlot /> <LineChart />
+        <FirstChart /> <LineChart />
+        <ScatterPlot />
         <FetchPlot />{" "}
       </div>
     </div>
