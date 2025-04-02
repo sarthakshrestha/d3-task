@@ -5,6 +5,7 @@ import ScatterPlot from "./pages/ScatterPlot";
 import FetchPlot from "./pages/FetchPlot";
 import { Toaster } from "sonner";
 import Logo from "/logo/Assabet.webp";
+import LineChart from "./pages/LineChart";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
       </div>
 
       <div>
-        <FirstChart /> <ScatterPlot /> <FetchPlot />{" "}
+        <FirstChart /> <ScatterPlot /> <LineChart />
+        <FetchPlot />{" "}
       </div>
     </div>
   );
