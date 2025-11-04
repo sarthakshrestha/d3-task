@@ -21,15 +21,6 @@ function App() {
       </h1>
       <p className="text-white">for</p>
 
-      <div className="flex justify-center mt-4 mx-auto bg-gray-50 w-fit rounded-full p-1 items-center">
-        <img
-          src={Logo}
-          alt="Assabet Logo"
-          className="h-16 object-contain"
-          title="Assabet"
-        />
-      </div>
-
       <div>
         <FirstChart /> <LineChart />
         <ScatterPlot />

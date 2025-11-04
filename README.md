@@ -1,4 +1,4 @@
-# Submission for Assabet Technologies
+# Video Game Companies Market Cap Visaulized
 
 ## Steps to Run the Project
 
