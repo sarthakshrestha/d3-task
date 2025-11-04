@@ -28,7 +28,7 @@ const Menu = () => {
         {/* Drawer Content */}
         <DrawerContent
           className="bg-white w-1/3 sm:w-1/2"
-          data-vaul-drawer-direction="left"
+          data-vaul-drawer-direction="right"
         >
           <DrawerClose asChild>
             <button
